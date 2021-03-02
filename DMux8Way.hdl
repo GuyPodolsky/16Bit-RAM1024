@@ -1,0 +1,57 @@
+/**
+ * 2 way Multiplexor.
+ * out = in[0] if sel == 0
+ *       in[1] if sel == 1
+ */
+
+CHIP DMux8Way {
+    IN in, sel[3];
+    OUT out[8];
+
+    PARTS:
+    Not(in=sel[0],out=NotSel0);
+    Not(in=sel[1],out=NotSel1);
+    Not(in=sel[2],out=NotSel2);
+
+    //Option 0
+    And(a=NotSel0,b=NotSel1,out=Op0P1);
+    And(a=Op0P1,b=NotSel2,out=Op0P2);
+    And(a=Op0P2,b=in,out=out[0]);
+
+    //Option 1
+    And(a=sel[0],b=NotSel1,out=Op1P1);
+    And(a=Op1P1,b=NotSel2,out=Op1P2);
+    And(a=Op1P2,b=in,out=out[1]);
+
+    //Option 2
+    And(a=NotSel0,b=sel[1],out=Op2P1);
+    And(a=Op2P1,b=NotSel2,out=Op2P2);
+    And(a=Op2P2,b=in,out=out[2]);
+
+    //Option 3
+    And(a=sel[0],b=sel[1],out=Op3P1);
+    And(a=Op3P1,b=NotSel2,out=Op3P2);
+    And(a=Op3P2,b=in,out=out[3]);
+
+
+    //Option 4
+    And(a=NotSel0,b=NotSel1,out=Op4P1);
+    And(a=Op4P1,b=sel[2],out=Op4P2);
+    And(a=Op4P2,b=in,out=out[4]);
+
+    //Option 5
+    And(a=sel[0],b=NotSel1,out=Op5P1);
+    And(a=Op5P1,b=sel[2],out=Op5P2);
+    And(a=Op5P2,b=in,out=out[5]);
+
+    //Option 6
+    And(a=NotSel0,b=sel[1],out=Op6P1);
+    And(a=Op6P1,b=sel[2],out=Op6P2);
+    And(a=Op6P2,b=in,out=out[6]);
+
+    //Option 7
+    And(a=sel[0],b=sel[1],out=Op7P1);
+    And(a=Op7P1,b=sel[2],out=Op7P2);
+    And(a=Op7P2,b=in,out=out[7]);
+
+}

@@ -1,0 +1,30 @@
+CHIP RAM1024 {
+    IN in[16],address[10],load,clear,clearAll;
+    OUT out[16];
+
+    PARTS:
+    DMux2Way(in=clear,sel=address[9],out[0]=clr0P1,out[1]=clr1P1);
+    Or(a=clr0P1,b=clearAll,out=clr0);
+    Or(a=clr1P1,b=clearAll,out=clr1);
+
+    DMux2Way(in=load,sel=address[9],out[0]=load0,out[1]=load1);
+    RAM512(in=in,address[0]=address[0],address[1]=address[1],address[2]=address[2],address[3]=address[3],address[4]=address[4],address[5]=address[5],address[6]=address[6],address[7]=address[7],address[8]=address[8],load=load0,clear=clr0,clearAll=clearAll,out[0]=R1O0,out[1]=R1O1,out[2]=R1O2,out[3]=R1O3,out[4]=R1O4,out[5]=R1O5,out[6]=R1O6,out[7]=R1O7,out[8]=R1O8,out[9]=R1O9,out[10]=R1O10,out[11]=R1O11,out[12]=R1O12,out[13]=R1O13,out[14]=R1O14,out[15]=R1O15);
+    RAM512(in=in,address[0]=address[0],address[1]=address[1],address[2]=address[2],address[3]=address[3],address[4]=address[4],address[5]=address[5],address[6]=address[6],address[7]=address[7],address[8]=address[8],load=load1,clear=clr1,clearAll=clearAll,out[0]=R2O0,out[1]=R2O1,out[2]=R2O2,out[3]=R2O3,out[4]=R2O4,out[5]=R2O5,out[6]=R2O6,out[7]=R2O7,out[8]=R2O8,out[9]=R2O9,out[10]=R2O10,out[11]=R2O11,out[12]=R2O12,out[13]=R2O13,out[14]=R2O14,out[15]=R2O15);
+
+    Mux2Way(in[0]=R1O0,in[1]=R2O0,sel=address[9],out=out[0]);           //Bit1
+    Mux2Way(in[0]=R1O1,in[1]=R2O1,sel=address[9],out=out[1]);           //Bit2
+    Mux2Way(in[0]=R1O2,in[1]=R2O2,sel=address[9],out=out[2]);           //Bit3
+    Mux2Way(in[0]=R1O3,in[1]=R2O3,sel=address[9],out=out[3]);           //Bit4
+    Mux2Way(in[0]=R1O4,in[1]=R2O4,sel=address[9],out=out[4]);           //Bit5
+    Mux2Way(in[0]=R1O5,in[1]=R2O5,sel=address[9],out=out[5]);           //Bit6
+    Mux2Way(in[0]=R1O6,in[1]=R2O6,sel=address[9],out=out[6]);           //Bit7
+    Mux2Way(in[0]=R1O7,in[1]=R2O7,sel=address[9],out=out[7]);           //Bit8
+    Mux2Way(in[0]=R1O8,in[1]=R2O8,sel=address[9],out=out[8]);           //Bit9
+    Mux2Way(in[0]=R1O9,in[1]=R2O9,sel=address[9],out=out[9]);           //Bit10
+    Mux2Way(in[0]=R1O10,in[1]=R2O10,sel=address[9],out=out[10]);        //Bit11
+    Mux2Way(in[0]=R1O11,in[1]=R2O11,sel=address[9],out=out[11]);        //Bit12
+    Mux2Way(in[0]=R1O12,in[1]=R2O12,sel=address[9],out=out[12]);        //Bit13
+    Mux2Way(in[0]=R1O13,in[1]=R2O13,sel=address[9],out=out[13]);        //Bit14
+    Mux2Way(in[0]=R1O14,in[1]=R2O14,sel=address[9],out=out[14]);        //Bit15
+    Mux2Way(in[0]=R1O15,in[1]=R2O15,sel=address[9],out=out[15]);        //Bit16
+}

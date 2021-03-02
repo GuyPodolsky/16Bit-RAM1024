@@ -1,0 +1,11 @@
+
+
+CHIP Bit {
+    IN in,load,clear;
+    OUT out;
+
+    PARTS:
+      Mux2Way(in[0]=Q,in[1]=in,sel=load,out=isLoad);
+      Mux2Way(in[0]=isLoad,in[1]=false,sel=clear,out=isClear);
+      DFF(in=isClear,out=Q,out=out);
+}

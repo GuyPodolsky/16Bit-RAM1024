@@ -1,0 +1,42 @@
+CHIP RAM64 {
+    IN in[16],address[6],load,clear,clearAll;
+    OUT out[16];
+
+    PARTS:
+    DMux8Way(in=clear,sel[0]=address[3],sel[1]=address[4],sel[2]=address[5],out[0]=clr0P1,out[1]=clr1P1,out[2]=clr2P1,out[3]=clr3P1,out[4]=clr4P1,out[5]=clr5P1,out[6]=clr6P1,out[7]=clr7P1);
+    Or(a=clr0P1,b=clearAll,out=clr0);
+    Or(a=clr1P1,b=clearAll,out=clr1);
+    Or(a=clr2P1,b=clearAll,out=clr2);
+    Or(a=clr3P1,b=clearAll,out=clr3);
+    Or(a=clr4P1,b=clearAll,out=clr4);
+    Or(a=clr5P1,b=clearAll,out=clr5);
+    Or(a=clr6P1,b=clearAll,out=clr6);
+    Or(a=clr7P1,b=clearAll,out=clr7);
+
+    DMux8Way(in=load,sel[0]=address[3],sel[1]=address[4],sel[2]=address[5],out[0]=load0,out[1]=load1,out[2]=load2,out[3]=load3,out[4]=load4,out[5]=load5,out[6]=load6,out[7]=load7);
+    RAM8(in=in,address[0]=address[0],address[1]=address[1],address[2]=address[2],load=load0,clear=clr0,clearAll=clearAll,out[0]=R1O0,out[1]=R1O1,out[2]=R1O2,out[3]=R1O3,out[4]=R1O4,out[5]=R1O5,out[6]=R1O6,out[7]=R1O7,out[8]=R1O8,out[9]=R1O9,out[10]=R1O10,out[11]=R1O11,out[12]=R1O12,out[13]=R1O13,out[14]=R1O14,out[15]=R1O15);
+    RAM8(in=in,address[0]=address[0],address[1]=address[1],address[2]=address[2],load=load1,clear=clr1,clearAll=clearAll,out[0]=R2O0,out[1]=R2O1,out[2]=R2O2,out[3]=R2O3,out[4]=R2O4,out[5]=R2O5,out[6]=R2O6,out[7]=R2O7,out[8]=R2O8,out[9]=R2O9,out[10]=R2O10,out[11]=R2O11,out[12]=R2O12,out[13]=R2O13,out[14]=R2O14,out[15]=R2O15);
+    RAM8(in=in,address[0]=address[0],address[1]=address[1],address[2]=address[2],load=load2,clear=clr2,clearAll=clearAll,out[0]=R3O0,out[1]=R3O1,out[2]=R3O2,out[3]=R3O3,out[4]=R3O4,out[5]=R3O5,out[6]=R3O6,out[7]=R3O7,out[8]=R3O8,out[9]=R3O9,out[10]=R3O10,out[11]=R3O11,out[12]=R3O12,out[13]=R3O13,out[14]=R3O14,out[15]=R3O15);
+    RAM8(in=in,address[0]=address[0],address[1]=address[1],address[2]=address[2],load=load3,clear=clr3,clearAll=clearAll,out[0]=R4O0,out[1]=R4O1,out[2]=R4O2,out[3]=R4O3,out[4]=R4O4,out[5]=R4O5,out[6]=R4O6,out[7]=R4O7,out[8]=R4O8,out[9]=R4O9,out[10]=R4O10,out[11]=R4O11,out[12]=R4O12,out[13]=R4O13,out[14]=R4O14,out[15]=R4O15);
+    RAM8(in=in,address[0]=address[0],address[1]=address[1],address[2]=address[2],load=load4,clear=clr4,clearAll=clearAll,out[0]=R5O0,out[1]=R5O1,out[2]=R5O2,out[3]=R5O3,out[4]=R5O4,out[5]=R5O5,out[6]=R5O6,out[7]=R5O7,out[8]=R5O8,out[9]=R5O9,out[10]=R5O10,out[11]=R5O11,out[12]=R5O12,out[13]=R5O13,out[14]=R5O14,out[15]=R5O15);
+    RAM8(in=in,address[0]=address[0],address[1]=address[1],address[2]=address[2],load=load5,clear=clr5,clearAll=clearAll,out[0]=R6O0,out[1]=R6O1,out[2]=R6O2,out[3]=R6O3,out[4]=R6O4,out[5]=R6O5,out[6]=R6O6,out[7]=R6O7,out[8]=R6O8,out[9]=R6O9,out[10]=R6O10,out[11]=R6O11,out[12]=R6O12,out[13]=R6O13,out[14]=R6O14,out[15]=R6O15);
+    RAM8(in=in,address[0]=address[0],address[1]=address[1],address[2]=address[2],load=load6,clear=clr6,clearAll=clearAll,out[0]=R7O0,out[1]=R7O1,out[2]=R7O2,out[3]=R7O3,out[4]=R7O4,out[5]=R7O5,out[6]=R7O6,out[7]=R7O7,out[8]=R7O8,out[9]=R7O9,out[10]=R7O10,out[11]=R7O11,out[12]=R7O12,out[13]=R7O13,out[14]=R7O14,out[15]=R7O15);
+    RAM8(in=in,address[0]=address[0],address[1]=address[1],address[2]=address[2],load=load7,clear=clr7,clearAll=clearAll,out[0]=R8O0,out[1]=R8O1,out[2]=R8O2,out[3]=R8O3,out[4]=R8O4,out[5]=R8O5,out[6]=R8O6,out[7]=R8O7,out[8]=R8O8,out[9]=R8O9,out[10]=R8O10,out[11]=R8O11,out[12]=R8O12,out[13]=R8O13,out[14]=R8O14,out[15]=R8O15);
+
+    Mux8Way(in[0]=R1O0,in[1]=R2O0,in[2]=R3O0,in[3]=R4O0,in[4]=R5O0,in[5]=R6O0,in[6]=R7O0,in[7]=R8O0,sel[0]=address[3],sel[1]=address[4],sel[2]=address[5],out=out[0]);           //Bit1
+    Mux8Way(in[0]=R1O1,in[1]=R2O1,in[2]=R3O1,in[3]=R4O1,in[4]=R5O1,in[5]=R6O1,in[6]=R7O1,in[7]=R8O1,sel[0]=address[3],sel[1]=address[4],sel[2]=address[5],out=out[1]);           //Bit2
+    Mux8Way(in[0]=R1O2,in[1]=R2O2,in[2]=R3O2,in[3]=R4O2,in[4]=R5O2,in[5]=R6O2,in[6]=R7O2,in[7]=R8O2,sel[0]=address[3],sel[1]=address[4],sel[2]=address[5],out=out[2]);           //Bit3
+    Mux8Way(in[0]=R1O3,in[1]=R2O3,in[2]=R3O3,in[3]=R4O3,in[4]=R5O3,in[5]=R6O3,in[6]=R7O3,in[7]=R8O3,sel[0]=address[3],sel[1]=address[4],sel[2]=address[5],out=out[3]);           //Bit4
+    Mux8Way(in[0]=R1O4,in[1]=R2O4,in[2]=R3O4,in[3]=R4O4,in[4]=R5O4,in[5]=R6O4,in[6]=R7O4,in[7]=R8O4,sel[0]=address[3],sel[1]=address[4],sel[2]=address[5],out=out[4]);           //Bit5
+    Mux8Way(in[0]=R1O5,in[1]=R2O5,in[2]=R3O5,in[3]=R4O5,in[4]=R5O5,in[5]=R6O5,in[6]=R7O5,in[7]=R8O5,sel[0]=address[3],sel[1]=address[4],sel[2]=address[5],out=out[5]);           //Bit6
+    Mux8Way(in[0]=R1O6,in[1]=R2O6,in[2]=R3O6,in[3]=R4O6,in[4]=R5O6,in[5]=R6O6,in[6]=R7O6,in[7]=R8O6,sel[0]=address[3],sel[1]=address[4],sel[2]=address[5],out=out[6]);           //Bit7
+    Mux8Way(in[0]=R1O7,in[1]=R2O7,in[2]=R3O7,in[3]=R4O7,in[4]=R5O7,in[5]=R6O7,in[6]=R7O7,in[7]=R8O7,sel[0]=address[3],sel[1]=address[4],sel[2]=address[5],out=out[7]);           //Bit8
+    Mux8Way(in[0]=R1O8,in[1]=R2O8,in[2]=R3O8,in[3]=R4O8,in[4]=R5O8,in[5]=R6O8,in[6]=R7O8,in[7]=R8O8,sel[0]=address[3],sel[1]=address[4],sel[2]=address[5],out=out[8]);           //Bit9
+    Mux8Way(in[0]=R1O9,in[1]=R2O9,in[2]=R3O9,in[3]=R4O9,in[4]=R5O9,in[5]=R6O9,in[6]=R7O9,in[7]=R8O9,sel[0]=address[3],sel[1]=address[4],sel[2]=address[5],out=out[9]);           //Bit10
+    Mux8Way(in[0]=R1O10,in[1]=R2O10,in[2]=R3O10,in[3]=R4O10,in[4]=R5O10,in[5]=R6O10,in[6]=R7O10,in[7]=R8O10,sel[0]=address[3],sel[1]=address[4],sel[2]=address[5],out=out[10]);  //Bit11
+    Mux8Way(in[0]=R1O11,in[1]=R2O11,in[2]=R3O11,in[3]=R4O11,in[4]=R5O11,in[5]=R6O11,in[6]=R7O11,in[7]=R8O11,sel[0]=address[3],sel[1]=address[4],sel[2]=address[5],out=out[11]);  //Bit12
+    Mux8Way(in[0]=R1O12,in[1]=R2O12,in[2]=R3O12,in[3]=R4O12,in[4]=R5O12,in[5]=R6O12,in[6]=R7O12,in[7]=R8O12,sel[0]=address[3],sel[1]=address[4],sel[2]=address[5],out=out[12]);  //Bit13
+    Mux8Way(in[0]=R1O13,in[1]=R2O13,in[2]=R3O13,in[3]=R4O13,in[4]=R5O13,in[5]=R6O13,in[6]=R7O13,in[7]=R8O13,sel[0]=address[3],sel[1]=address[4],sel[2]=address[5],out=out[13]);  //Bit14
+    Mux8Way(in[0]=R1O14,in[1]=R2O14,in[2]=R3O14,in[3]=R4O14,in[4]=R5O14,in[5]=R6O14,in[6]=R7O14,in[7]=R8O14,sel[0]=address[3],sel[1]=address[4],sel[2]=address[5],out=out[14]);  //Bit15
+    Mux8Way(in[0]=R1O15,in[1]=R2O15,in[2]=R3O15,in[3]=R4O15,in[4]=R5O15,in[5]=R6O15,in[6]=R7O15,in[7]=R8O15,sel[0]=address[3],sel[1]=address[4],sel[2]=address[5],out=out[15]);  //Bit16
+}
